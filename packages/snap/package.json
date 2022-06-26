@@ -17,9 +17,11 @@
   ],
   "jest": {
     "modulePathIgnorePatterns": [
-        "__data__"
+      "__data__"
     ],
-    "testMatch": [ "**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"],
+    "testMatch": [
+      "**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
     "testEnvironment": "node"
   },
   "scripts": {
@@ -30,9 +32,12 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
+    "@dashevo/dashcore-lib": "^0.19.39",
+    "@dashevo/wallet-lib": "^7.22.13",
     "@metamask/snaps-cli": "^0.9.0",
     "bip32": "^2.0.6",
-    "bitcoinjs-lib": "^6.0.1"
+    "bitcoinjs-lib": "^6.0.1",
+    "dash": "^3.22.13"
   },
   "publishConfig": {
     "access": "public",

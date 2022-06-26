@@ -1,9 +1,29 @@
 import secp256k1 from 'secp256k1';
 import { BIP32Interface } from 'bip32';
-import { Psbt, HDSigner, networks } from 'bitcoinjs-lib'
+import { Psbt, HDSigner, networks } from 'bitcoinjs-lib';
 
-import { BitcoinNetwork } from '../interface'
+import { BitcoinNetwork } from '../interface';
 
+import Dash from 'dash';
+
+const {
+  Essentials: {
+    Buffer  // Node.JS Buffer polyfill.
+  },
+  Core: { // @dashevo/dashcore-lib essentials
+    Transaction, 
+    PrivateKey,
+    BlockHeader,
+  },
+  PlatformProtocol: { // @dashevo/dpp essentials
+    Identity,
+    Identifier,
+  },
+  WalletLib: { // @dashevo/wallet-lib essentials
+    EVENTS
+  },
+  DAPIClient, // @dashevo/dapi-client
+} = Dash;
 
 export class AccountSigner implements HDSigner {
     publicKey: Buffer;
@@ -104,11 +124,26 @@ export class BtcTx {
 export function getNetwork(network: BitcoinNetwork) {
     switch (network) {
         case BitcoinNetwork.Main:
-            return networks.bitcoin
-        case BitcoinNetwork.Test:
+            return networks.bitcoin            
+            // return Dashcore.Networks.livenet;
+        case BitcoinNetwork.Test:                        
+            
+            // const network = Networks.get('testnet');
+
+            /*
+            const client = new Dash.Client({
+                network: "testnet",
+                wallet: {
+                  mnemonic: "arena light cheap control apple buffalo indicate rare motor valid accident isolate",
+                },
+              });
+              */
+
             return networks.regtest
+            // return Dashcore.testnet;
         default:
             return networks.bitcoin
+            // return Dashcore.Networks.livenet;
     }
 }
 
